@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Chat = ({name, message}) => {
-    return (
-        <div className="message">
-            <strong>{this.props.user} :</strong> 
-            <span>{this.props.text}</span>        
-        </div>    
-    )
+class Chat extends Component {
+    render() {
+        const { name, message } = this.props;
+        
+        return (
+            <div className="message">
+                <strong>{this.props.user} :</strong> 
+                <span>{this.props.text}</span>        
+            </div>    
+        )
+    }
 }
 
 export default Chat;

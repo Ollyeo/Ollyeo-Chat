@@ -5,6 +5,11 @@ class UserContainer extends Component {
     
     constructor(props){
         super();
+        
+        this.state = {
+            username: '',
+            users: [],
+        }
     }
     
     render() {

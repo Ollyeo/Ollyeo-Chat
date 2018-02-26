@@ -8,25 +8,16 @@ import {
 } from './containers';
 
 class App extends Component {
-   render() {
-      const { users, text, messages } = this.state;
-      
-      const { handleOnChangeName,
-              handleOnIdentify,
-              handleOnChangeMessage,
-              handleOnSubmitMessage } = this;
-      
+  constructor(props) {
+    super(props);
+  }
+  
+  render() {
       return (
         <div>
           <Header/>
-          <UserContainer
-            users={users}
-          />
-          <ChatContainer
-            messages={messages}
-            input={text}
-            handleOnChangeMessage={handleOnChangeMessage}
-            handleOnSubmitMessage={handleOnSubmitMessage}/>
+          <UserContainer/>
+          <ChatContainer/>
         </div>
       );
     }

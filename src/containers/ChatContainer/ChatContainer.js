@@ -16,7 +16,7 @@ class ChatContainer extends Component {
             message: '',
             messages: []
         };
-
+    
         this.socket = io('ollyeo-chat-hyunseo.c9users.io:8080');
 
         this.socket.on('connect', function(data){
@@ -91,7 +91,7 @@ class ChatContainer extends Component {
                 input,
                 handleOnChangeMessage,
                 handleOnSubmitMessage
-        } = this.props;
+        } = this.state;
         
         return(
             <div className="chat-container">

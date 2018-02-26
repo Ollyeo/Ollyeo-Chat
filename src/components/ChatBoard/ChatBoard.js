@@ -2,6 +2,7 @@ import React from 'react'
 
 const ChatBoard = ({messages}) => {
     // append text
+    console.log(messages);
     const chatlist = messages.map(
         ({name, text}) => (
             <table class="table table-striped table-bordered">
