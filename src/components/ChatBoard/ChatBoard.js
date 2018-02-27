@@ -14,8 +14,8 @@ const ChatBoard = ({messages}) => {
                 </thead>
                 <tbody>
                     <tr ng-repeat="msg in messages">
-                        <td class="span2" ng-bind="msg.name"></td>
-                        <td class="span7" ng-bind="msg.text"></td>
+                        <td class="span2" ng-bind="msg.name">{name}</td>
+                        <td class="span7" ng-bind="msg.text">{text}</td>
                     </tr>
                 </tbody>
             </table>

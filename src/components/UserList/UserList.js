@@ -16,7 +16,7 @@ class UserList extends Component{
             <div className="span3">
               <ul className="collection with-header well localusers">
                 <li className="collection-header"><h4>Local Users</h4></li>
-                {userlist}
+                    {userlist}
               </ul>
             </div>
         );
