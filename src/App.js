@@ -26,20 +26,20 @@ class App extends Component {
   }
   
   setSocket = (data) => {
-      console.log(this.socket);
-      
       // userlist update를 위해 
       this.socket.emit('identify', this.state.username)
     
       // message 받음
       this.socket.on('message', (data) => {
+        console.log('receive message')
         this.setState({
           messages: this.state.messages.concat([data])
         })
       });
-            
+      
       // 누군가 접속
       this.socket.on('user', (data) => {
+        console.log('receive user')
         this.setState({
           users: this.state.users.concat([data])
         })
@@ -51,7 +51,7 @@ class App extends Component {
         
     const { username, message } = this.state
         
-    console.log('Sending message:', message);
+    console.log('send message:', message);
         
     this.socket.emit('message', {
       author: username,
@@ -62,10 +62,6 @@ class App extends Component {
       message:''
     })
   };
-  
-  sendName = () => {
-    this.socket.emit('identify', this.state.username);
-  }
      
   handleOnChangeName = (ev) =>{
     this.setState({
@@ -103,12 +99,15 @@ class App extends Component {
             handleOnSubmitMessage }
             = this.state;
             
-    const { username, users, message, messages } = this.state;
+    const { users, message, messages } = this.state;
     
       return (
         <div>
           <Header/>
-          <UserContainer users={users}/>
+          <UserContainer 
+            users={users}
+            handlOnChangeName={handleOnChangeName}
+            handleOnIdentify={handleOnIdentify}/>
           <ChatContainer 
             messages={messages}
             message={message}

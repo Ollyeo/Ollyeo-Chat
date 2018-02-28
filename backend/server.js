@@ -19,6 +19,7 @@ const server = new Hapi.Server({
 // Resource
 
 const users = [];
+const names = [];
 const messages = [];
 
 const io = socket(server.listener)
@@ -69,18 +70,22 @@ io.on('connection', (socket) => {
     socket.on('identify', (name) => {
         console.log('name is ' + name)
         
+        broadcast('users', names);
+        /*
         updateUser( String(name || 'Anonymous')).then(() => {
             console.log('updateUser Done!')
-            socket.emit('users', users);
+            broadcast('user', name);
+            console.log('users add');
         }).catch((err) => {
             console.log(err);
-        })
+        })*/
+        
     });
 });
 
 const updateUser = async (name) => {
-    users.map( async (name) => {
-        broadcast('user', name);
+    users.map( async (socket) => {
+        socket.emit('user', name);
     })
 }
 
