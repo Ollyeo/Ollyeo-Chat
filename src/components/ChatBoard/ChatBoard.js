@@ -1,31 +1,22 @@
 import React from 'react'
+import {
+    Chat
+} from '../'
+import { Card } from 'antd';
 
 const ChatBoard = ({messages}) => {
     // append text
     console.log(messages);
     const chatlist = messages.map(
-        ({name, text}) => (
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th class="span2">Name</th>
-                        <th class="span7">Text</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="msg in messages">
-                        <td class="span2" ng-bind="msg.name">{name}</td>
-                        <td class="span7" ng-bind="msg.text">{text}</td>
-                    </tr>
-                </tbody>
-            </table>
+        ({name, message}) => (
+            <Chat name={name} message={message}/>
         )
     );
     
     return (
-        <div className='chat-board'>
+        <Card title="Chattng" style={{ width: 300 }}>
             {chatlist}
-        </div>
+        </Card>
     );
 }
 

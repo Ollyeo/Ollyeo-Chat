@@ -11,7 +11,8 @@ class ChatContainer extends Component {
     }
     
     render() {
-        const { messages,
+        const { 
+                messages,
                 message,
                 handleOnChangeMessage,
                 handleOnSubmitMessage }

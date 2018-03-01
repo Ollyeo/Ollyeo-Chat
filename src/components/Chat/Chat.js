@@ -6,8 +6,8 @@ class Chat extends Component {
         
         return (
             <div className="message">
-                <strong>{this.props.user} :</strong> 
-                <span>{this.props.text}</span>        
+                <strong>{name} :</strong> 
+                <span>{message}</span>        
             </div>    
         )
     }

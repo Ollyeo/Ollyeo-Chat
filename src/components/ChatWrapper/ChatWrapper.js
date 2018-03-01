@@ -1,14 +1,16 @@
 import React from 'react';
-import { Button } from 'antd';
+import { 
+    Button,
+    Icon
+} from 'antd';
 
-const ChatWrapper = ({value, onChange, onKeyPress, onSubmit}) => {
+const ChatWrapper = ({message, onChange, onKeyPress, onSubmit}) => {
     return (
         <div className="form">
-            <Button type="primary">Button</Button>
-            <input value={value} onChange={onChange}/>
-            <div className="create-button" onClick={onSubmit}>
-                Enter
-            </div>
+            <Icon type="smile" />
+
+            <input value={message} onChange={onChange}/>
+            <Button type="primary" onClick={onSubmit}>Button</Button>
         </div>
     )
 }

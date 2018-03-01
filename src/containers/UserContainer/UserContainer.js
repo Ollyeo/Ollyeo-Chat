@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { UserList } from '../../components';
+import {
+    UserName,
+    UserList
+} from '../../components';
 
 class UserContainer extends Component {
     
@@ -9,10 +12,13 @@ class UserContainer extends Component {
     }
     
     render() {
-        const { users } = this.props;
+        const { username, users, onChange} = this.props;
         
         return (
-            <UserList users={users}/>
+            <div>
+                <UserName username={username} onChange={onChange} />
+                <UserList users={users} />
+            </div>
         )
     }
 }
