@@ -43,6 +43,7 @@ io.on('connection', (socket) => {
         
     socket.on('disconnect', () => {
         users.splice(users.indexOf(socket), 1);
+        names.splice(names.indexOf(socket), 1);
         updateUser();
     });
         
@@ -70,7 +71,9 @@ io.on('connection', (socket) => {
     socket.on('identify', (name) => {
         console.log('name is ' + name)
         
-        broadcast('users', names);
+        names.push(name);
+        //socket.emit('user', names);
+        broadcast('user', names);
         /*
         updateUser( String(name || 'Anonymous')).then(() => {
             console.log('updateUser Done!')
@@ -85,7 +88,7 @@ io.on('connection', (socket) => {
 
 const updateUser = async (name) => {
     users.map( async (socket) => {
-        socket.emit('user', name);
+        socket.emit('user', names);
     })
 }
 

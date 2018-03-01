@@ -32,6 +32,7 @@ class App extends Component {
       // message 받음
       this.socket.on('message', (data) => {
         console.log('receive message')
+        console.log(data)
         this.setState({
           messages: this.state.messages.concat([data])
         })
@@ -40,9 +41,10 @@ class App extends Component {
       // 누군가 접속
       this.socket.on('user', (data) => {
         console.log('receive user')
+        console.log(data)
         // 추가가 아니라 전체 업데이트
         this.setState({
-          users: this.state.users.concat([data])
+          users: data
         })
       })
   }
@@ -90,10 +92,6 @@ class App extends Component {
     console.log('handleOnSubmitMessage')
     ev.preventDefault()
     this.sendMessage();
-        
-    this.setState({
-      message: ''
-    });
   }
   
   render() {
@@ -102,7 +100,7 @@ class App extends Component {
             handleOnIdentify,
             handleOnChangeMessage,
             handleOnSubmitMessage }
-            = this.state;
+            = this;
             
     const { username, users, message, messages } = this.state;
     
@@ -114,9 +112,9 @@ class App extends Component {
             users={users}
             handlOnChangeName={handleOnChangeName}/>
           <ChatContainer 
-            messages={messages}
-            message={message}
-            handleOnChangeMessage={handleOnChangeMessage}
+            messages={messages} 
+            message={message} 
+            handleOnChangeMessage={handleOnChangeMessage} 
             handleOnSubmitMessage={handleOnSubmitMessage}/>
         </div>
       );

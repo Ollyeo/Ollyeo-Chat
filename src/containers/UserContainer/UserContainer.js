@@ -12,11 +12,11 @@ class UserContainer extends Component {
     }
     
     render() {
-        const { username, users, onChange} = this.props;
+        const { username, users, handlOnChangeName} = this.props;
         
         return (
             <div>
-                <UserName username={username} onChange={onChange} />
+                <UserName username={username} onChange={handlOnChangeName} />
                 <UserList users={users} />
             </div>
         )

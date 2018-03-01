@@ -1,8 +1,10 @@
 import React from 'react'
 
+import { Input } from 'antd';
+
 const UserName = ({username, onChange}) => {
     return (
-        <input value={username} onChange={onChange}/>
+        <Input placeholder="Name" defaultvalue="Anonymous" value={username} onChange={onChange}/>
     );
 }
 

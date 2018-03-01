@@ -8,6 +8,8 @@ import {
 class ChatContainer extends Component {
     constructor(props){
         super(props);
+        console.log('ChatContainer')
+        console.log(props);
     }
     
     render() {
