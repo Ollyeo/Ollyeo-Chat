@@ -50,8 +50,7 @@ class App extends Component {
   }
     
   sendMessage = (ev) => {
-    ev.preventDefault();
-        
+
     const { username, message } = this.state
         
     console.log('send message:', message);
@@ -107,15 +106,16 @@ class App extends Component {
       return (
         <div>
           <Header/>
-          <UserContainer 
-            username={username}
-            users={users}
-            handlOnChangeName={handleOnChangeName}/>
           <ChatContainer 
             messages={messages} 
             message={message} 
             handleOnChangeMessage={handleOnChangeMessage} 
             handleOnSubmitMessage={handleOnSubmitMessage}/>
+          <UserContainer 
+            username={username}
+            users={users}
+            handleOnChangeName={handleOnChangeName}/>
+          
         </div>
       );
   }

@@ -3,11 +3,15 @@ import User from '../User/User';
 
 class UserList extends Component{
     
+    constructor(props){
+        super(props);
+    }
+    
     render() {
         const { users } = this.props;
         
         const userlist = users.map(
-            ({id, name}) => (
+            ({name}) => (
                 <User name={name}/>
             )
         );

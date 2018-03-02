@@ -6,8 +6,8 @@ import { Card } from 'antd';
 
 const ChatBoard = ({messages}) => {
     const chatlist = messages.map(
-        ({name, message}) => (
-            <Chat name={name} message={message}/>
+        ({author, message}) => (
+            <Chat name={author} message={message}/>
         )
     );
     

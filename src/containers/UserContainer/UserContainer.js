@@ -8,16 +8,16 @@ import {
 class UserContainer extends Component {
     
     constructor(props){
-        super();
+        super(props);
     }
     
     render() {
-        const { username, users, handlOnChangeName} = this.props;
+        const { username, users, handleOnChangeName} = this.props;
         
         return (
             <div>
-                <UserName username={username} onChange={handlOnChangeName} />
                 <UserList users={users} />
+                <UserName username={username} onChange={handleOnChangeName} />
             </div>
         )
     }

@@ -5,7 +5,7 @@ import {
     Input
 } from 'antd';
 
-const ChatWrapper = ({message, onChange, onKeyPress, onSubmit}) => {
+const ChatWrapper = ({message, onChange, onSubmit}) => {
     console.log(onChange);
     return (
         <div className="form">
