@@ -49,7 +49,7 @@ class App extends Component {
       })
   }
     
-  sendMessage = (ev) => {
+  sendMessage = () => {
 
     const { username, message } = this.state
         
@@ -64,6 +64,10 @@ class App extends Component {
       message:''
     })
   };
+  
+  sendName = () => {
+    this.socket.emit('change-name', {name:this.state.username});
+  }
      
   handleOnChangeName = (ev) =>{
     console.log('handleOnChangeName')
@@ -74,7 +78,6 @@ class App extends Component {
   
   handleOnIdentify = (ev) => {
     console.log('handleOnSubmitMessage')
-    this.setName();
     this.setState({
       username: ''
     })
@@ -90,6 +93,7 @@ class App extends Component {
   handleOnSubmitMessage = (ev) => {
     console.log('handleOnSubmitMessage')
     ev.preventDefault()
+    this.sendName();
     this.sendMessage();
   }
   

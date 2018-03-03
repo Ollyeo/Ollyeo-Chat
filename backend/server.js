@@ -2,6 +2,8 @@ const Path = require('path');
 const Hapi = require('hapi');
 const Inert = require('inert');
 
+// sudo service redis-server start
+
 const async = require('async');
 
 const socket = require('socket.io');
@@ -16,6 +18,22 @@ const server = new Hapi.Server({
     }
 });
 
+var myPluginOpts = {
+    connection: {
+        "host": "localhost",
+        "opts": {
+            "parser": "javascript"
+        }
+    }
+};
+ 
+function usersHandler(request, reply) {
+    var redisClient = request.server.plugins['hapi-redis'].client;
+ 
+    //Do something with thr redis client 
+    //reply(result); 
+};
+
 // Resource
 
 const users = [];
@@ -23,7 +41,6 @@ const names = [];
 const messages = [];
 
 const io = socket(server.listener)
-console.log(io);
 //const io = socket(server)
 //(server.listener);
 
@@ -43,9 +60,16 @@ io.on('connection', (socket) => {
         
     socket.on('disconnect', () => {
         users.splice(users.indexOf(socket), 1);
-        names.splice(names.indexOf(socket), 1);
+        names.splice(users.indexOf(socket), 1);
         updateUser();
     });
+    
+    socket.on('change-name', (recv) => {
+        console.log(recv)
+        
+        names[users.indexOf(socket)] = {name:recv.name}
+        broadcast('user', names);
+    })
         
     socket.on('message', (recv) => {
         let author  = recv.author;
@@ -66,12 +90,13 @@ io.on('connection', (socket) => {
             
         broadcast('message', send);
         messages.push(send);
+        
     });
         
     socket.on('identify', (name) => {
         console.log('name is ' + name)
         
-        names.push(name);
+        names.push({name:name});
         //socket.emit('user', names);
         broadcast('user', names);
         /*
@@ -123,6 +148,19 @@ const provision = async () => {
         handler(request, h){
             return h.file('index.html')
         }
+    });
+    
+    server.route( {
+        "method"  : "GET",
+        "path"    : "/stats",
+        "handler" : usersHandler
+    });
+     
+    await server.register({
+        register: require('hapi-redis'),
+        options: myPluginOpts
+    }, function () {
+ 
     });
     
     await server.start();
